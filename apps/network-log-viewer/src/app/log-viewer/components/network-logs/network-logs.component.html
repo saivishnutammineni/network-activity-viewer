@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <network-activity-viewer-network-logs-list
+        [networkLogs]="networkRequests"
+        (request)="viewRequestDetails($event)"
+        (refresh)="refreshLogs()"
+        (clear)="clearLogs()"
+      ></network-activity-viewer-network-logs-list>
+    </div>
+    <mat-divider class="col-auto p-0" [vertical]="true"></mat-divider>
+    <div class="col log-details-wrapper">
+      <ng-container *ngIf="selectedRequest; else noSelectedRequest">
+        <network-activity-viewer-network-log-details
+          [request]="selectedRequest"
+        ></network-activity-viewer-network-log-details>
+      </ng-container>
+      <ng-template #noSelectedRequest>
+        <div class="text-center mt-5">
+          <b class="display-5">Select a request to view the details</b>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

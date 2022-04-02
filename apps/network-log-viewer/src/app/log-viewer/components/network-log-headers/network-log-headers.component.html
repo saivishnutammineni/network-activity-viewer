@@ -1,0 +1,25 @@
+<div>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex flex-column">
+        <div>URL: {{ networkLog?.url }}</div>
+        <div>Method: {{ networkLog?.method }}</div>
+        <div>Response Status Code: {{ networkLog?.responseStatusCode }}</div>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col">
+      <h3>Request Headers:</h3>
+      <ngx-json-viewer [json]="networkLog?.requestHeaders"></ngx-json-viewer>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col">
+      <h3>Response Headers:</h3>
+      <ngx-json-viewer [json]="networkLog?.responseHeaders"></ngx-json-viewer>
+    </div>
+  </div>
+</div>

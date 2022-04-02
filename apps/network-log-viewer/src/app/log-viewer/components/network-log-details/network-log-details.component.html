@@ -1,0 +1,19 @@
+<div class="network-log-details-container">
+  <mat-tab-group>
+    <mat-tab label="Headers">
+      <network-activity-viewer-network-log-headers
+        [networkLog]="request"
+      ></network-activity-viewer-network-log-headers>
+    </mat-tab>
+    <mat-tab label="Payload">
+      <network-activity-viewer-network-log-payload
+        [networkLog]="request"
+      ></network-activity-viewer-network-log-payload>
+    </mat-tab>
+    <mat-tab label="Response">
+      <network-activity-viewer-network-log-response
+        [networkLog]="request"
+      ></network-activity-viewer-network-log-response>
+    </mat-tab>
+  </mat-tab-group>
+</div>

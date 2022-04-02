@@ -1,0 +1,29 @@
+<div>
+  <mat-toolbar style="height: 48px" class="pe-0">
+    <div class="row w-100 align-items-center">
+      <div class="col-auto">Requests</div>
+      <div class="col-auto ms-auto pe-0">
+        <button mat-icon-button (click)="refreshLogs()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-icon-button (click)="clearLogs()">
+          <mat-icon>block</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+  <div class="network-logs-list-container">
+    <div class="row" *ngFor="let request of networkLogs">
+      <div class="col">
+        <network-activity-viewer-network-log
+          [networkLog]="request"
+          (selection)="selectRequest(request)"
+        ></network-activity-viewer-network-log>
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+    <div *ngIf="!networkLogs?.length" class="text-center mt-5">
+      No requests found!
+    </div>
+  </div>
+</div>

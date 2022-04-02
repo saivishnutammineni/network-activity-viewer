@@ -1,0 +1,35 @@
+<div
+  tabindex="0"
+  (click)="selectRequest()"
+  (keydown.enter)="selectRequest()"
+  (keydown.space)="selectRequest()"
+  class="pointer-cursor m-1"
+>
+  <mat-card
+    class="border-start border-5"
+    [ngClass]="isErrorResponse ? 'border-warn' : 'border-success'"
+  >
+    <div class="row align-items-center">
+      <div class="col-auto p-0">
+        <mat-chip-list>
+          <mat-chip color="accent" selected>{{ networkLog.method }}</mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <div class="col text-truncate">
+        <span
+          [ngClass]="isErrorResponse ? 'text-warn' : 'text-success'"
+          [matTooltip]="networkLog.url"
+        >
+          {{ apiPath }}
+        </span>
+      </div>
+
+      <div class="col-auto ps-0">
+        <span [ngClass]="isErrorResponse ? 'text-warn' : 'text-success'">
+          <i>{{ networkLog.responseStatusCode }}</i>
+        </span>
+      </div>
+    </div>
+  </mat-card>
+</div>

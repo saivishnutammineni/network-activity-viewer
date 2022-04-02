@@ -1,0 +1,23 @@
+<div>
+  <div class="row">
+    <div class="col">
+      <h3>Query params:</h3>
+      <ngx-json-viewer
+        [json]="queryParams"
+        *ngIf="queryParams"
+      ></ngx-json-viewer>
+      <span *ngIf="!queryParams">No query params</span>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col">
+      <h3>Request payload:</h3>
+      <ngx-json-viewer
+        [json]="networkLog?.requestData"
+        *ngIf="networkLog?.requestData"
+      ></ngx-json-viewer>
+      <span *ngIf="!networkLog?.requestData">No request payload</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "network-debugger": "libs/network-debugger",
+    "network-log-viewer": "apps/network-log-viewer",
+    "network-log-viewer-e2e": "apps/network-log-viewer-e2e"
+  }
+}

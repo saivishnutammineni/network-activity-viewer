@@ -1,0 +1,76 @@
+{
+  "projectType": "application",
+  "root": "apps/network-log-viewer",
+  "sourceRoot": "apps/network-log-viewer/src",
+  "prefix": "network-activity-viewer",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/network-log-viewer",
+        "index": "apps/network-log-viewer/src/index.html",
+        "main": "apps/network-log-viewer/src/main.ts",
+        "polyfills": "apps/network-log-viewer/src/polyfills.ts",
+        "tsConfig": "apps/network-log-viewer/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/network-log-viewer/src/favicon.ico",
+          "apps/network-log-viewer/src/assets"
+        ],
+        "styles": ["apps/network-log-viewer/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "network-log-viewer:build:production"
+        },
+        "development": {
+          "browserTarget": "network-log-viewer:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "network-log-viewer:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/network-log-viewer/src/**/*.ts",
+          "apps/network-log-viewer/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/network-log-viewer"],
+      "options": {
+        "jestConfig": "apps/network-log-viewer/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

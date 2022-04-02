@@ -1,0 +1,5 @@
+:host::ng-deep mat-tab-body {
+  max-height: calc(100vh - 112px);
+  height: calc(100vh - 112px);
+  overflow: auto;
+}

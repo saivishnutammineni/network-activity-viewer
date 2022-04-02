@@ -1,0 +1,44 @@
+{
+  "root": "libs/network-debugger",
+  "sourceRoot": "libs/network-debugger/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/network-debugger",
+        "main": "libs/network-debugger/src/index.ts",
+        "tsConfig": "libs/network-debugger/tsconfig.lib.json",
+        "assets": ["libs/network-debugger/*.md"]
+      },
+      "configurations": {
+        "watch": {
+          "watch": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/network-debugger/**/*.ts"]
+      }
+    },
+    "link": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm link",
+        "cwd": "dist/libs/network-debugger"
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm publish",
+        "cwd": "dist/libs/network-debugger"
+      }
+    }
+  },
+  "tags": []
+}

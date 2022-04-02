@@ -1,0 +1,19 @@
+{
+  "name": "@network-activity-viewer/network-debugger",
+  "version": "1.0.0",
+  "description": "Tracks http and https requests made from the application",
+  "keywords": [
+    "Network",
+    "Network requests",
+    "Network Debugger",
+    "Debugger",
+    "Node",
+    "http",
+    "https",
+    "Logger",
+    "network Logger",
+    "Inspector",
+    "Network Inspector"
+  ],
+  "author": "Sai Vishnu"
+}
