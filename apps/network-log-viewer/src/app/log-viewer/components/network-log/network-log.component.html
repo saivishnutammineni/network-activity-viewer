@@ -7,7 +7,7 @@
 >
   <mat-card
     class="border-start border-5"
-    [ngClass]="isErrorResponse ? 'border-warn' : 'border-success'"
+    [ngClass]="isErrorResponse ? 'border-danger' : 'border-success'"
   >
     <div class="row align-items-center">
       <div class="col-auto p-0">
@@ -18,7 +18,7 @@
 
       <div class="col text-truncate">
         <span
-          [ngClass]="isErrorResponse ? 'text-warn' : 'text-success'"
+          [ngClass]="isErrorResponse ? 'text-danger' : 'text-success'"
           [matTooltip]="networkLog.url"
         >
           {{ apiPath }}
