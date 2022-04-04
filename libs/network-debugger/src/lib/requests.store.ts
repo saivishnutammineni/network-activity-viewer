@@ -1,5 +1,4 @@
 import { RequestDetails } from './model';
-
 let requests: RequestDetails[] = [];
 
 export function saveRequest(request: RequestDetails) {

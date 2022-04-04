@@ -5,6 +5,7 @@ import { URL } from 'url';
 import { initNetworkRequestsServer } from './logs-server';
 import { RequestDetails } from './model';
 import { saveRequest } from './requests.store';
+import { initUiServer } from './ui-server';
 
 export function initNetworkLogging() {
   const agents = [http, https];
@@ -18,6 +19,7 @@ export function initNetworkLogging() {
   });
 
   initNetworkRequestsServer();
+  initUiServer();
 }
 
 function requestProxyFactory(actualRequestHandler: any, isHttps: boolean) {

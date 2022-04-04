@@ -10,7 +10,14 @@
         "outputPath": "dist/libs/network-debugger",
         "main": "libs/network-debugger/src/index.ts",
         "tsConfig": "libs/network-debugger/tsconfig.lib.json",
-        "assets": ["libs/network-debugger/*.md"]
+        "assets": [
+          "libs/network-debugger/*.md",
+          {
+            "input": "libs/network-debugger/static",
+            "glob": "**/*",
+            "output": "static"
+          }
+        ]
       },
       "configurations": {
         "watch": {
@@ -29,6 +36,13 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "npm link",
+        "cwd": "dist/libs/network-debugger"
+      }
+    },
+    "package": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm pack",
         "cwd": "dist/libs/network-debugger"
       }
     },

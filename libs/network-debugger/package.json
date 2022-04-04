@@ -1,5 +1,5 @@
 {
-  "name": "@network-activity-viewer/network-debugger",
+  "name": "network-activity-viewer",
   "version": "1.0.0",
   "description": "Tracks http and https requests made from the application",
   "keywords": [
@@ -15,5 +15,15 @@
     "Inspector",
     "Network Inspector"
   ],
-  "author": "Sai Vishnu"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/saivishnutammineni/network-activity-viewer.git"
+  },
+  "author": "Sai Vishnu <saivishnutammineni@gmail.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/saivishnutammineni/network-activity-viewer/issues"
+  },
+  "homepage": "https://github.com/saivishnutammineni/network-activity-viewer#readme",
+  "private": false
 }
