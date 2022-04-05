@@ -41,6 +41,8 @@ Currently this package will start two server which network logging is initialize
 1. Logs Server: Serves Logs over http port 6262
 2. UI server: Serves the UI code over http port 4500
 
+Publish command: `npm publish --access public --otp={otp from authenticator}`
+
 ## Contributing
 This application was built as a quick solution for a project i was working on.
 
