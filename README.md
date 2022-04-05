@@ -1,105 +1,58 @@
+# Network Activity Viewer
 
+Chrome devtools network tab like functionality for node apps!!!
 
-# NetworkActivityViewer
+There is no easy way to view network requests made from a node app similar to network tab in chrome devtools for ui apps.
 
-This project was generated using [Nx](https://nx.dev).
+This project solves this by tracking the network requests made from your node application and showing them in a chrome dev tools like UI !!!
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/saivishnutammineni/network-activity-viewer/master/libs/network-debugger/static/images/network-log-viewer.png" 
+width="100%" alt="Nx - Smart, Fast and Extensible Build System"></p>
 
-🔎 **Smart, Fast and Extensible Build System**
+## Usage
 
-## Quick Start & Documentation
+1. Install the package
+    >npm i network-activity-viewer
+2. Start network tracking
+   ```Typescript
+   // Add this code in a main js / ts file 
+   import { initNetworkLogging } from 'network-activity-viewer';
 
-[Nx Documentation](https://nx.dev/angular)
+   initNetworkLogging();
+   ```
+3. See the requests made by navigating to http://localhost:4500 in the browser!
 
-[10-minute video showing all Nx features](https://nx.dev/getting-started/intro)
+## Code base
+This is a nx monorepo with the following projects
 
-[Interactive Tutorial](https://nx.dev/tutorial/01-create-application)
+### Network log viewer
+The Angular UI application which shows the network logs.
+This project uses angular material and bootstrap.
 
-## Adding capabilities to your workspace
+Dev: Run `ng serve` to start the dev ui server.
+Build: Run the prod build from projects.json of the project.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+### Network debugger
+The node package which tracks http, https requests, and starts the UI and logs server.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+This project has the static folder which contains the UI bundle built from `Network log viewer` Project.
 
-Below are our core plugins:
+Currently this package will start two server which network logging is initialized.
+1. Logs Server: Serves Logs over http port 6262
+2. UI server: Serves the UI code over http port 4500
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+## Contributing
+This application was built as a quick solution for a project i was working on.
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+This application is at a early stage where the basic functionality is available but a lot of good to have things can be built around.
 
-## Generate an application
-
-Run `ng g @nrwl/angular:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@network-activity-viewer/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+ I would appreciate any contributions especially in the following areas:
+ 1. Review current approach of network requests tracking and any suggestions.
+ 2. Review current approach of integrating with a node application and any suggestions.
+ 3. Creating a better UI for the network log viewing.
+ 4. Auto port selection for UI and logs servers as per availability.
+ 5. Auto open the network log viewing page in browser once server is started
+ 6. Use sockets communication between UI and logs server so that UI can be updated as and when a new request is captured.
+ 7. Add functionality to filter, block requests.
+ 8. Export the requests as har file.
+ 9. Better workflow for copying built UI code to npm package
