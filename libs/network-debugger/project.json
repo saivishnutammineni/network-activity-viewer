@@ -17,7 +17,8 @@
             "glob": "**/*",
             "output": "static"
           }
-        ]
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       },
       "configurations": {
         "watch": {
