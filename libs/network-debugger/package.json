@@ -1,6 +1,6 @@
 {
   "name": "network-activity-viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tracks http and https requests made from the application",
   "keywords": [
     "Network",
@@ -20,7 +20,7 @@
     "url": "git+ssh://git@github.com/saivishnutammineni/network-activity-viewer.git"
   },
   "author": "Sai Vishnu <saivishnutammineni@gmail.com>",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/saivishnutammineni/network-activity-viewer/issues"
   },
