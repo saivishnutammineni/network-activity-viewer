@@ -24,7 +24,6 @@
     "@nrwl/angular": "13.9.5",
     "ngx-json-viewer": "^3.0.2",
     "rxjs": "~7.4.0",
-    "single-page-app-server": "^1.1.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
