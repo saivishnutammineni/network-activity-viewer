@@ -48,7 +48,7 @@ This application was built as a quick solution for a project i was working on.
 
 This application is at a early stage where the basic functionality is available but a lot of good to have things can be built around.
 
- I would appreciate any contributions especially in the following areas:
+ I would appreciate any contributions (including suggestions) especially in the following areas:
  1. Review current approach of network requests tracking and any suggestions.
  2. Review current approach of integrating with a node application and any suggestions.
  3. Creating a better UI for the network log viewing.
