@@ -58,7 +58,9 @@ function proxyCallbackFactory(
   return (response: http.IncomingMessage) => {
     requestDetails.responseHeaders = response.headers;
 
-    actualCallBack(response);
+    if (typeof actualCallBack === 'function') {
+      actualCallBack(response);
+    }
 
     handleResponse(response, requestDetails);
   };
