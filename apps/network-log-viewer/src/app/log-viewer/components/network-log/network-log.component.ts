@@ -29,10 +29,16 @@ export class NetworkLogComponent implements OnInit {
     const url = new URL(this.networkLog.url);
 
     /**
-     * When the request url has only host name Ex: https://abcd.com
-     * Then path name is a simple '\'. Chrome devtools shows hostname in this case.
-     * Following same approach
+     * Chrome devtools logic (Involves hostname, pathname, queryparams)
+     * 1. If No pathname is present:
+     *  1. If no query string, show hostname
+     *  2. If a query string is present, show only query string
+     * 2. If path name is present, show it along with query params if any
      */
-    return (url.pathname.length === 1 ? url.host : url.pathname) + url.search;
+    if (url.pathname.length === 1) {
+      // no pathname
+      return url.search ? url.search : url.host;
+    }
+    return url.pathname.substring(url.pathname.lastIndexOf('/')) + url.search;
   }
 }
