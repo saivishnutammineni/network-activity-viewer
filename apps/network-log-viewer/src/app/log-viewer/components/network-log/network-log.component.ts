@@ -15,9 +15,7 @@ export class NetworkLogComponent implements OnInit {
   public apiPath: string;
 
   ngOnInit(): void {
-    this.apiPath = this.networkLog.url?.substring(
-      this.networkLog.url.lastIndexOf('/')
-    );
+    this.apiPath = this.getApiPath();
     const responseStatusCode = this.networkLog.responseStatusCode;
     this.isErrorResponse =
       responseStatusCode === 0 || responseStatusCode >= 300;
@@ -25,5 +23,16 @@ export class NetworkLogComponent implements OnInit {
 
   public selectRequest() {
     this.selection.emit();
+  }
+
+  private getApiPath() {
+    const url = new URL(this.networkLog.url);
+
+    /**
+     * When the request url has only host name Ex: https://abcd.com
+     * Then path name is a simple '\'. Chrome devtools shows hostname in this case.
+     * Following same approach
+     */
+    return (url.pathname.length === 1 ? url.host : url.pathname) + url.search;
   }
 }
