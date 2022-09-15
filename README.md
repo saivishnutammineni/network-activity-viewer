@@ -37,7 +37,7 @@ The node package which tracks http, https requests, and starts the UI and logs s
 
 This project has the static folder which contains the UI bundle built from `Network log viewer` Project.
 
-Currently this package will start two server which network logging is initialized.
+Currently this package will start two servers when network logging is initialized.
 1. Logs Server: Serves Logs over http port 6262
 2. UI server: Serves the UI code over http port 4500
 
