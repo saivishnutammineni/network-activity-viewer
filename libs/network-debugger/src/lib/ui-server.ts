@@ -6,7 +6,7 @@ import * as zlib from 'zlib';
 const uiDir = path.normalize(__dirname + '../../../static/network-log-viewer');
 
 export function initUiServer(port = 4500) {
-  http.createServer(requestHandler).listen(port);
+  http.createServer(requestHandler).listen(port, 'localhost');
 }
 
 function requestHandler(req: http.IncomingMessage, res: http.ServerResponse) {

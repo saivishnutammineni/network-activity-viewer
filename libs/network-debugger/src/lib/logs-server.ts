@@ -4,7 +4,7 @@ import { clearLogs, getLogs } from './requests.store';
 
 export function initNetworkRequestsServer(port = 6262) {
   const server = http.createServer(logsRequestHandler);
-  server.listen(port);
+  server.listen(port, 'localhost');
 }
 
 function logsRequestHandler(
