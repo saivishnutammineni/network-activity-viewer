@@ -43,6 +43,11 @@ Currently this package will start two servers when network logging is initialize
 
 Publish command: `npm publish --access public --otp={otp from authenticator}` (run inside the dist folder of `network-debugger` library)
 
+# Local development
+1. Build network-debugger project `npx nx run network-debugger:build`
+2. Run `npm link` in the `network-debugger` dist folder
+3. Run `npm link network-activity-viewer` in the folder to test
+
 ## Contributing
 This application was built as a quick solution for a project i was working on.
 
