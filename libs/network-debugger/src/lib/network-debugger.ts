@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as http from 'http';
 import * as https from 'https';
-import { URL } from 'url';
 import { initNetworkRequestsServer } from './logs-server';
 import { RequestDetails } from './model';
 import { saveRequest } from './requests.store';
@@ -9,6 +8,9 @@ import { initUiServer } from './ui-server';
 
 export function initNetworkLogging() {
   const agents = [http, https];
+
+  // proxy the native fetch of node
+  proxyFetchRequest();
 
   agents.forEach((agent) => {
     const actualRequestHandlerFn = agent.request;
@@ -97,9 +99,9 @@ function handleResponse(
           ? responseBuffer[0]
           : Buffer.concat(responseBuffer);
       responseData = responseData.toString();
-      requestDetails.responseData = parseResponseData(
+      requestDetails.responseData = parseData(
         responseData,
-        requestDetails
+        requestDetails?.responseHeaders
       );
       requestDetails.requestEndTime = new Date().getTime();
       registerRequest(requestDetails);
@@ -134,19 +136,91 @@ function proxyClientRequestFactory(
   return actualRequest;
 }
 
-function parseResponseData(
-  responseData: string,
-  requestDetails: RequestDetails
-) {
-  const contentType: string = requestDetails?.responseHeaders?.['content-type'];
-  if (contentType.includes('application/json')) {
+function parseData(data: string, headers: any) {
+  const contentType: string =
+    headers?.['content-type'] || headers?.['Content-Type'];
+  if (contentType?.includes('application/json')) {
     try {
-      return JSON.parse(responseData);
+      return JSON.parse(data);
     } catch (e) {
-      return responseData;
+      return data;
     }
   }
-  return responseData;
+  return data;
+}
+
+function proxyFetchRequest() {
+  if (!fetch) {
+    return;
+  }
+  const actualFetch = fetch;
+  global['fetch'] = fetchProxyFactory(actualFetch);
+}
+
+function fetchProxyFactory(actualFetch: typeof fetch) {
+  return function (request: string | URL | Request, options?: RequestInit) {
+    const requestDetails = new RequestDetails();
+    requestDetails.requestStartTime = new Date().getTime();
+
+    if (typeof request === 'string') {
+      requestDetails.url = request;
+    } else if (request instanceof URL) {
+      requestDetails.url = request.toString();
+    }
+
+    requestDetails.method = options?.method ?? 'GET';
+    requestDetails.requestHeaders = options?.headers;
+    requestDetails.requestData =
+      typeof options?.body === 'string'
+        ? parseData(options?.body, requestDetails?.requestHeaders)
+        : options?.body;
+
+    return actualFetch(request as string | Request, options)
+      .then(fetchResponseHandlerFactory(requestDetails))
+      .catch(fetchErrorHandlerFactory(requestDetails));
+  };
+}
+
+function fetchResponseHandlerFactory(requestDetails: RequestDetails) {
+  return (response: Response) => {
+    const clonedResponse = response.clone();
+    requestDetails.requestEndTime = new Date().getTime();
+    requestDetails.responseHeaders = getParsedHeaders(response.headers);
+    requestDetails.responseStatusCode = response.status || 0;
+
+    clonedResponse
+      .text()
+      .then((responseText) => {
+        requestDetails.responseData = parseData(
+          responseText,
+          requestDetails?.responseHeaders
+        );
+        registerRequest(requestDetails);
+      })
+      .catch(() => {
+        registerRequest(requestDetails);
+      });
+
+    return response;
+  };
+}
+
+function fetchErrorHandlerFactory(requestDetails: RequestDetails) {
+  return (err: any) => {
+    requestDetails.requestEndTime = new Date().getTime();
+    requestDetails.responseStatusCode = 0;
+    registerRequest(requestDetails);
+    throw err;
+  };
+}
+
+function getParsedHeaders(headers: any) {
+  const parsedHeaders: any = {};
+  for (const pair of headers) {
+    parsedHeaders[pair[0]] = pair[1];
+  }
+
+  return parsedHeaders;
 }
 
 function registerRequest(request: RequestDetails) {
