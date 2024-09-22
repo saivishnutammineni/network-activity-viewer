@@ -9,6 +9,8 @@ import { RequestDetails } from '../../../models/network-logs';
 export class NetworkLogComponent implements OnInit {
   @Input() networkLog: RequestDetails;
 
+  @Input() isSelected: boolean;
+
   @Output() selection = new EventEmitter<void>();
 
   public isErrorResponse: boolean;

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export class RequestDetails {
+  id: string;
   url: string;
   method: string;
   cookies: any;
@@ -13,4 +14,8 @@ export class RequestDetails {
 
   requestStartTime: number;
   requestEndTime: number;
+
+  constructor() {
+    this.id = Date.now() + '' + Math.ceil(Math.random() * 1000);
+  }
 }

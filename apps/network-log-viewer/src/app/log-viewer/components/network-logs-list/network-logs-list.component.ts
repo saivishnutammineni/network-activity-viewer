@@ -9,6 +9,8 @@ import { RequestDetails } from '../../../models/network-logs';
 export class NetworkLogsListComponent {
   @Input() networkLogs: RequestDetails[];
 
+  @Input() selectedRequest: RequestDetails;
+
   @Output() request: EventEmitter<RequestDetails> = new EventEmitter();
 
   @Output() clear = new EventEmitter<void>();

@@ -4,6 +4,7 @@
   (keydown.enter)="selectRequest()"
   (keydown.space)="selectRequest()"
   class="pointer-cursor m-1"
+  [class.selected-request]="isSelected"
 >
   <mat-card
     class="border-start border-5"

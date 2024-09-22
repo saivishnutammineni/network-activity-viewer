@@ -17,6 +17,8 @@ export class NetworkLogsService {
   }
 
   public clearLogs(): Observable<unknown> {
-    return this.http.delete(NETWORK_LOGS_URL);
+    return this.http.delete(NETWORK_LOGS_URL, {
+      responseType: 'text',
+    });
   }
 }

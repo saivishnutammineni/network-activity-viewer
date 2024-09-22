@@ -3,6 +3,7 @@
     <div class="col-4">
       <network-activity-viewer-network-logs-list
         [networkLogs]="networkRequests"
+        [selectedRequest]="selectedRequest"
         (request)="viewRequestDetails($event)"
         (refresh)="refreshLogs()"
         (clear)="clearLogs()"

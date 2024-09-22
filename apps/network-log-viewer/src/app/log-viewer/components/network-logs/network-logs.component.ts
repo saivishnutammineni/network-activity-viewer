@@ -24,7 +24,12 @@ export class NetworkLogsComponent implements OnInit {
   public refreshLogs() {
     this.networkLogsSvc.getNetworkLogs().subscribe((requests) => {
       this.networkRequests = requests;
-      this.selectedRequest = null;
+      const hasSelectedRequest = this.networkRequests?.some(
+        (request) => request.id === this.selectedRequest?.id
+      );
+      if (!hasSelectedRequest) {
+        this.selectedRequest = null;
+      }
     });
   }
 

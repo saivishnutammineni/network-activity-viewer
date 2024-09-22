@@ -18,6 +18,7 @@
         <network-activity-viewer-network-log
           [networkLog]="request"
           (selection)="selectRequest(request)"
+          [isSelected]="request.id === selectedRequest?.id"
         ></network-activity-viewer-network-log>
         <mat-divider></mat-divider>
       </div>

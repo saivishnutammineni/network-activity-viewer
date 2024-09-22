@@ -1,4 +1,5 @@
 export class RequestDetails {
+  id: string;
   url: string;
   method: string;
   cookies: string;
